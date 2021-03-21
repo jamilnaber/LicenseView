@@ -1,12 +1,62 @@
 <?xml version="1.0" encoding="utf-8"?>
-<FrameLayout xmlns:android="http://schemas.android.com/apk/res/android"
+<androidx.constraintlayout.widget.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    tools:context=".CaptureFragment">
+    android:layout_marginBottom="?attr/actionBarSize"
+    android:background="@android:color/white">
 
     <androidx.camera.view.PreviewView
         android:id="@+id/viewFinder"
         android:layout_width="match_parent"
         android:layout_height="match_parent" />
-</FrameLayout>
+
+    <View
+        android:id="@+id/cameraBottomView"
+        android:layout_width="match_parent"
+        android:layout_height="50dp"
+        android:background="@android:color/white"
+        app:layout_constraintBottom_toBottomOf="parent" />
+
+    <ImageButton
+        android:id="@+id/cameraCaptureImageButton"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:background="@android:color/transparent"
+        android:src="@drawable/ic_baseline_photo_camera_24"
+        app:layout_constraintBottom_toBottomOf="@id/cameraBottomView"
+        app:layout_constraintEnd_toEndOf="@id/cameraBottomView"
+        app:layout_constraintStart_toStartOf="@id/cameraBottomView"
+        app:layout_constraintTop_toTopOf="@id/cameraBottomView"
+        tools:ignore="ContentDescription" />
+
+</androidx.constraintlayout.widget.ConstraintLayout>
+
+    <!--<?xml version="1.0" encoding="utf-8"?>-->
+    <!--<FrameLayout xmlns:android="http://schemas.android.com/apk/res/android"-->
+    <!--    xmlns:tools="http://schemas.android.com/tools"-->
+    <!--    android:layout_width="match_parent"-->
+    <!--    android:layout_height="match_parent"-->
+    <!--    tools:context=".CaptureFragment">-->
+
+    <!--    <FrameLayout android:layout_width="fill_parent"-->
+    <!--        android:layout_height="fill_parent"-->
+    <!--        android:layout_weight="2"-->
+    <!--        android:padding="5dip"-->
+    <!--        >-->
+    <!--        <androidx.camera.view.PreviewView-->
+    <!--            android:id="@+id/viewFinder"-->
+    <!--            android:layout_width="match_parent"-->
+    <!--            android:layout_height="match_parent" />-->
+
+    <!--        <Button android:id="@+id/target"-->
+    <!--            android:layout_gravity="center_horizontal"-->
+    <!--            android:layout_width="wrap_content"-->
+    <!--            android:layout_height="wrap_content"-->
+    <!--            android:text="surfacebuttonview"-->
+    <!--            >-->
+    <!--        </Button>-->
+    <!--    </FrameLayout>-->
+
+    <!--</FrameLayout>-->

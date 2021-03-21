@@ -9,14 +9,17 @@ import androidx.fragment.app.Fragment;
 import androidx.fragment.app.FragmentTransaction;
 
 import android.Manifest;
+import android.app.Activity;
 import android.content.pm.PackageManager;
 import android.os.Bundle;
 import android.view.MenuItem;
+import android.widget.Toast;
 
 import com.google.android.material.bottomnavigation.BottomNavigationView;
 
 public class LicenseActivity extends AppCompatActivity {
     BottomNavigationView bottomNavigation;
+    Activity a;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -24,17 +27,16 @@ public class LicenseActivity extends AppCompatActivity {
         setContentView(R.layout.activity_license);
         bottomNavigation = findViewById(R.id.bottom_navigation);
         bottomNavigation.setOnNavigationItemSelectedListener(navigationItemSelectedListener);
-        if (checkPermission()){
-            openFragment(CaptureFragment.newInstance("", ""));
-        }
+        openFragment(CaptureFragment.newInstance("", ""));
+
         ActionBar actionBar = getSupportActionBar();
+        assert actionBar != null;
         actionBar.hide();
+        a = this;
     }
 
     BottomNavigationView.OnNavigationItemSelectedListener navigationItemSelectedListener =
-        new BottomNavigationView.OnNavigationItemSelectedListener() {
-            @Override
-            public boolean onNavigationItemSelected(@NonNull MenuItem item) {
+            item -> {
                 switch (item.getItemId()) {
                     case R.id.navigation_profile:
                         openFragment(ProfileFragment.newInstance("", ""));
@@ -47,9 +49,7 @@ public class LicenseActivity extends AppCompatActivity {
                         return true;
                 }
                 return false;
-            }
-
-        };
+            };
 
     public void openFragment(Fragment fragment) {
         FragmentTransaction transaction = getSupportFragmentManager().beginTransaction();
@@ -57,29 +57,5 @@ public class LicenseActivity extends AppCompatActivity {
         transaction.addToBackStack(null);
         transaction.commit();
     }
-
-    private boolean checkPermission() {
-        if (ContextCompat.checkSelfPermission(this, Manifest.permission.CAMERA )
-                == PackageManager.PERMISSION_GRANTED){
-            return true;
-        }
-        else{
-            ActivityCompat.requestPermissions(this, new String[]{Manifest.permission.CAMERA}, 0) ;
-        }
-        return false;
-    }
-
-    public void onRequestPermissionsResult(int code, String[] permissions, int[] results) {
-        if (results.length > 0) {
-            if (results[0] == PackageManager.PERMISSION_GRANTED) {
-
-            }
-            else {
-
-            }
-        }
-    }
-
-
 
 }
